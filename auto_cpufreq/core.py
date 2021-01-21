@@ -308,7 +308,8 @@ def countdown(s):
         time.sleep(1)
 
     if auto_cpufreq_log_file is not None:
-        open(auto_cpufreq_log_path, "w").close()
+        auto_cpufreq_log_file.truncate(0)
+        auto_cpufreq_log_file.flush()
     else:
         run("clear")
 
