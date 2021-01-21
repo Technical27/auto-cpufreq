@@ -52,8 +52,7 @@ dcheck = getoutput("snapctl get daemon")
 
 def file_logging():
     global auto_cpufreq_log_file
-    auto_cpufreq_log_file = open(auto_cpufreq_log_path, "r+")
-    auto_cpufreq_log_file.truncate(0)
+    auto_cpufreq_log_file = open(auto_cpufreq_log_path, "w")
     sys.stdout = auto_cpufreq_log_file
 
 # ToDo: read version from snap/snapcraft.yaml and write to $SNAP/version for use with snap installs
