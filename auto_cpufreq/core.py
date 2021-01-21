@@ -310,7 +310,6 @@ def countdown(s):
     if auto_cpufreq_log_file is not None:
         auto_cpufreq_log_file.seek(0)
         auto_cpufreq_log_file.truncate(0)
-        auto_cpufreq_log_file.flush()
     else:
         run("clear")
 
