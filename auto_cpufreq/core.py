@@ -309,11 +309,10 @@ def countdown(s):
 
     if auto_cpufreq_log_file is not None:
         auto_cpufreq_log_file.seek(0)
+        auto_cpufreq_log_file.truncate(0)
 
         # prevent tail from saying "file truncated"
         auto_cpufreq_log_file.write("\n")
-
-        auto_cpufreq_log_file.truncate(1)
     else:
         run("clear")
 
