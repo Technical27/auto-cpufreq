@@ -12,7 +12,7 @@ import warnings
 from math import isclose
 from pathlib import Path
 from pprint import pformat
-from subprocess import getoutput, call, run, check_output
+from subprocess import getoutput, call, run, check_output, DEVNULL
 
 import psutil
 import distro
@@ -310,9 +310,6 @@ def countdown(s):
     if auto_cpufreq_log_file is not None:
         auto_cpufreq_log_file.seek(0)
         auto_cpufreq_log_file.truncate(0)
-
-        # prevent tail from saying "file truncated"
-        auto_cpufreq_log_file.write("\n")
     else:
         run("clear")
 
@@ -776,7 +773,8 @@ def no_log_msg():
 def read_log():
     # readlog
     if os.path.isfile(auto_cpufreq_log_path):
-        call(["tail", "-n 50", "-f", str(auto_cpufreq_log_path)])
+        # prevent tail from printing "file truncated"
+        call(["tail", "-n 50", "-f", str(auto_cpufreq_log_path)], stderr=DEVNULL)
     else:
         no_log_msg()
     footer()
